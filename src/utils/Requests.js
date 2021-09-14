@@ -32,4 +32,16 @@ async function postArticle(article) {
     });
 }
 
-export { getArticle, getArticles, patchArticle, postArticle };
+async function getToken(user) {
+    return fetch(`http://127.0.0.1:8000/token/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: JSON.stringify(
+            `grant_type=&username=${user.username}&password=${user.password}&scope=&client_id=&client_secret=`
+        )
+    })
+}
+
+export { getArticle, getArticles, getToken, patchArticle, postArticle };

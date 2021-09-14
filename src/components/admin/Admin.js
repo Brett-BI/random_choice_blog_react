@@ -8,6 +8,7 @@ import {
 import CreateArticle from './CreateArticle';
 import EditArticle from './EditArticle';
 import Articles from '../article/Articles';
+import Login from './Login';
 
 class Admin extends React.Component {
     constructor(props) {
@@ -21,8 +22,9 @@ class Admin extends React.Component {
         return (
             <Switch>
                 <Route exact path={`/admin`}>
-                    <Link to="/admin/article/new">NEW ARTICLE</Link>
-                    <Articles match={ this.props.match } />
+                    {/* <Link to="/admin/article/new">NEW ARTICLE</Link>
+                    <Articles match={ this.props.match } /> */}
+                    <Login />
                 </Route>
                 <Route path={`/admin/article/new`} component={ CreateArticle } />
                 <Route path={`/admin/article/:article_id`} component={ EditArticle } />                                                                                     
