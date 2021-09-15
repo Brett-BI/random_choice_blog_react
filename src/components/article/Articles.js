@@ -27,7 +27,7 @@ class Articles extends React.Component {
     let articles = this.state.articles.map((a) => {
     let adminURL = this.props.match && this.props.match.path.includes('/admin') ? true : false;
     return (
-      <div className="article_preview">
+      <div className="article_preview" key={a.id}>
           <p>({a.id}) {a.title}</p>
           <p>{a.subtitle}</p>
           <p>{a.markup_content}</p>

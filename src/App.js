@@ -11,6 +11,8 @@ import Admin from './components/admin/Admin';
 import Article from './components/article/Article';
 import Articles from './components/article/Articles';
 import Header from './components/header/Header';
+import Login from './components/admin/Login';
+import Logout from './components/admin/Logout';
 import UserContext, { UserProvider } from './context/UserContext';
 
 class App extends React.Component {
@@ -26,7 +28,7 @@ class App extends React.Component {
   }
   render() {
     return (
-      <UserProvider value={ this.state.user }>
+      <UserProvider>
         <Router>
           <Header />
           <div>
@@ -38,6 +40,7 @@ class App extends React.Component {
                 <li>
                   <Link to="/admin">Admin</Link>
                 </li>
+                <li><Link to="/logout">Logout</Link></li>
               </ul>
             </nav>
 
@@ -46,13 +49,15 @@ class App extends React.Component {
               </Route>
               <Route path="/admin/" component={ Admin }>
               </Route>
+              <Route exact path="/login" component={ Login }></Route>
+              <Route exact path="/logout" component={ Logout }></Route>
               <Route exact path="/">
                 <Articles />
               </Route>
             </Switch>
           </div>
         </Router>
-        </UserProvider>
+      </UserProvider>
     );
   }
 }

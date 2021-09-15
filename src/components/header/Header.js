@@ -1,5 +1,6 @@
 import React from "react";
-import UserContext from "../../context/UserContext";
+
+import UserContext from '../../context/UserContext';
 
 
 class Header extends React.Component {
@@ -12,6 +13,8 @@ class Header extends React.Component {
 
     render() {
         const { token, username } = this.context;
+        console.log(`updating header token to: ${token}`);
+        console.log(`updating header username to: ${username}`);
         return (
             <header>
                 TOKEN: { token }<br/>

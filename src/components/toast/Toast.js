@@ -12,3 +12,5 @@ class Toast extends React.Component {
         )
     }
 }
+
+export default Toast;
