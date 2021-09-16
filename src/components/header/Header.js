@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 import UserContext from '../../context/UserContext';
 
@@ -12,13 +13,20 @@ class Header extends React.Component {
     }
 
     render() {
-        const { token, username } = this.context;
-        console.log(`updating header token to: ${token}`);
-        console.log(`updating header username to: ${username}`);
+        const { token, username, isLoggedIn } = this.context;
         return (
-            <header>
-                TOKEN: { token }<br/>
-                USERNAME: { username }
+            <header>                
+                <nav>
+                    <ul>
+                        <li>
+                            <Link to="/">Home</Link>
+                        </li>
+                        <li>
+                            <Link to="/admin">Admin</Link>
+                        </li>                        
+                    </ul>
+                </nav>
+                <span className="logout">{ isLoggedIn ? <Link to="/logout">Logout</Link> : null }</span>
             </header>
         )
     }

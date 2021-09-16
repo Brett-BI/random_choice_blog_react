@@ -11,15 +11,14 @@ class Logout extends React.Component {
     }
 
     componentDidMount() {
-        console.log('Logout did mount?');
         const { clearAllData } = this.context;
-        clearAllData('');
+        clearAllData();
         //setUsername('');
     }
 
     render() {
         return (
-            <Redirect to="/" />
+            <Redirect to="/login" />
         )
     }
 }

@@ -7,35 +7,44 @@ class UserProvider extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: {
-                username: localStorage.getItem('username'),
-                token: localStorage.getItem('userToken')
-            }
+            username: localStorage.getItem('username'),
+            token: localStorage.getItem('userToken'),
+            isLoggedIn: false
         }
         this.setToken = this.setToken.bind(this);
         this.setUsername = this.setUsername.bind(this);
+        this.setIsLoggedIn = this.setIsLoggedIn.bind(this);
         this.clearAllData = this.clearAllData.bind(this);
     }
 
     setToken(token) {
         console.log(`setting token to: ${token}`);
-        let newState = { user: { ...this.state.user, 'token': token }};
+        let newState = { ...this.state, 'token': token };
         console.log(`newState is: `);
         console.log(newState);
-        this.setState({ user: { ...this.state.user, 'token': token }});
+        this.setState({ ...this.state, 'token': token });
         localStorage.setItem('userToken', token);
         console.log(this.state);
     }
 
     setUsername(username) {
         console.log(`setting username to: ${username}`);
-        this.setState({ user: { ...this.state.user, 'username': username }});
+        this.setState({ ...this.state, 'username': username });
         localStorage.setItem('username', username);
         console.log(this.state);
     }
 
+    setIsLoggedIn(isLoggedIn) {
+        this.setState({ ...this.state, 'isLoggedIn': isLoggedIn });
+    }
+
     clearAllData() {
-        this.setState({ user: {}});
+        console.log('Clearing all user data from storage...');
+        this.setState({ username: '', token: '', isLoggedIn: false });
+        console.log('UserContext state is:');
+        console.log(this.state);
+        localStorage.setItem('userToken', '');
+        localStorage.setItem('username', '');
     }
 
     componentDidMount() {
@@ -45,7 +54,7 @@ class UserProvider extends React.Component {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: 'Bearer ' + this.state.user.token
+                Authorization: 'Bearer ' + this.state.token
             }
         }).then(response => {
             console.log(response);
@@ -64,25 +73,28 @@ class UserProvider extends React.Component {
                 this.setToken(d.access_token);
             } else {
                 console.log("It's not OK...");
-                //this.setToken(null);
+                this.clearAllData();
             }
         })
         .catch(e => {
             console.log('an error occurred.');
+            this.clearAllData();
             //this.setToken(null);
         })
     }
 
     render() {
         const { children } = this.props;
-        const { token } = this.state.user;
+        const { token } = this.state;
         const { setToken } = this;
-        const { username } = this.state.user;
+        const { username } = this.state;
         const { setUsername } = this;
+        const { isLoggedIn } = this.state;
+        const { setIsLoggedIn } = this;
         const { clearAllData } = this;
 
         return (
-            <UserContext.Provider value={{ token, setToken, username, setUsername, clearAllData }}>
+            <UserContext.Provider value={{ token, setToken, username, setUsername, isLoggedIn, setIsLoggedIn, clearAllData }}>
                 { children }
             </UserContext.Provider>
         )

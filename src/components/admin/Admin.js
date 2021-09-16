@@ -22,7 +22,7 @@ class Admin extends React.Component {
 
     render() {
         let { username } = this.context;
-        console.log(username);
+        console.log(`username is: ${username}`);
         if(username) {
             return (
                 <Switch>

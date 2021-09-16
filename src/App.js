@@ -2,10 +2,10 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
-import './App.css';
+
+import './App.scss';
 
 import Admin from './components/admin/Admin';
 import Article from './components/article/Article';
@@ -31,19 +31,7 @@ class App extends React.Component {
       <UserProvider>
         <Router>
           <Header />
-          <div>
-            <nav>
-              <ul>
-                <li>
-                  <Link to="/">Home</Link>
-                </li>
-                <li>
-                  <Link to="/admin">Admin</Link>
-                </li>
-                <li><Link to="/logout">Logout</Link></li>
-              </ul>
-            </nav>
-
+          <div className="content">
             <Switch>
               <Route path="/article/:article_id" component={ Article }>
               </Route>

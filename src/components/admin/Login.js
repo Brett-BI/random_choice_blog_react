@@ -36,7 +36,7 @@ class Login extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        const { token, setToken, setUsername } = this.context;
+        const { token, setToken, setUsername, setIsLoggedIn } = this.context;
         console.log(`token right now is: ${token}`);
 
         let _token = getToken(this.state.user);
@@ -47,6 +47,8 @@ class Login extends React.Component {
             setToken(d.access_token);
             console.log('setting the username from Login');
             setUsername(d.username);
+            console.log('setting isLoggedIn from Login');
+            setIsLoggedIn(true);
             console.log('going to admin panel...');
             this.props.history.push('/admin');
         })
