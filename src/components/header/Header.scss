@@ -1,0 +1,59 @@
+$dark-black: #212529;
+$medium: #6c757d;
+$light-text: #f8f9fa;
+$dark-purple: #240046;
+$medium-purple: #3c096c;
+$light-purple: #c77dff;
+$bg-lighter: #f8f9fa;
+$bg-light: #e9ecef;
+$bg-medium: #adb5bd;
+$bg-dark: #343a40;
+$bg-darker: #212529;
+
+
+@media only screen and (min-width: 1201px){
+    
+    header {
+        grid-area: h;
+        background-color: $dark-black;
+        color: $light-text;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem;
+
+        nav {
+        height: 100%;
+
+        ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            height: 100%;
+            padding: 0;
+
+            li {
+                display: inline;
+                margin-right: 2rem;
+                padding: 0 .5rem;
+                height: 100%;
+
+                a {
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                }
+            }
+
+            li:hover {
+                background-color: $bg-dark;
+            }
+        }
+    }
+
+        .logout {
+           font-weight: bold;
+        }
+    }
+}

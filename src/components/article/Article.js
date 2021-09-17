@@ -26,13 +26,15 @@ class Article extends React.Component {
 
     render () {
         return (
-            <div>
-                <h1 className="article_title">{this.state.article.title}</h1>
-                <h1 className="article_subtitle"><small>{this.state.article.subtitle}</small></h1>
-                <p>{this.state.article.markup_content}</p>
-                <p>{this.state.article.posted_date}</p>
-                <p>{this.state.article.author}</p>
-                <p>{this.state.article.id}</p>
+            <div className="d-flex flex-center m-2">
+                <div className="w-50">
+                    <h1 className="article_title">{this.state.article.title}</h1>
+                    <p className="article_subtitle">{this.state.article.subtitle}</p>
+                    <p>{this.state.article.markup_content}</p>
+                    <p>{this.state.article.posted_date}</p>
+                    <p>{this.state.article.author}</p>
+                    <p>{this.state.article.id}</p>
+                </div>
             </div>
         )
     }

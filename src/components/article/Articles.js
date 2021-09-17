@@ -2,6 +2,8 @@ import React from "react";
 
 import { getArticles } from '../../utils/Requests'
 
+import './Article.scss';
+
 class Articles extends React.Component {
   constructor(props) {
     super(props);
@@ -27,8 +29,9 @@ class Articles extends React.Component {
     let articles = this.state.articles.map((a) => {
     let adminURL = this.props.match && this.props.match.path.includes('/admin') ? true : false;
     return (
-      <div className="article_preview" key={a.id}>
-          <p>({a.id}) {a.title}</p>
+      <a className="card w-50 d-block m-2" href={ adminURL ? `/admin/article/${a.id}` : `/article/${a.id}` } key={ a.id }>
+        <div>
+          <h1 className="article-title">{a.title}</h1>
           <p>{a.subtitle}</p>
           <p>{a.markup_content}</p>
           <p>{a.posted_date}</p>
@@ -36,12 +39,13 @@ class Articles extends React.Component {
           <p>
             <a href={ adminURL ? `/admin/article/${a.id}` : `/article/${a.id}` }>Go to Article</a>
           </p>
-      </div>
+        </div>
+      </a>
     )
     });
     //let {title, subtitle, content, posted_date, author} = props.data;
     return (
-      <div className="article_previews">
+      <div className="article-preview-container d-flex flex-align-center flex-direction-col">
         { articles }
       </div>
     )

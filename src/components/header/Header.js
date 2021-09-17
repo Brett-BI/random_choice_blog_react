@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 import UserContext from '../../context/UserContext';
 
+import './Header.scss';
+
 
 class Header extends React.Component {
     static contextType = UserContext;

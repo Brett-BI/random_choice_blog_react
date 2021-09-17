@@ -1,13 +1,25 @@
 $dark-black: #212529;
+$medium: #6c757d;
 $light-text: #f8f9fa;
 $dark-purple: #240046;
+$medium-purple: #3c096c;
 $light-purple: #c77dff;
+$bg-lighter: #f8f9fa;
+$bg-light: #e9ecef;
+$bg-medium: #adb5bd;
+$bg-dark: #343a40;
+$bg-darker: #212529;
 
-body {
+* {
   font-size: 16px;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  background: $bg-light;
+  color: $dark-black;
 }
 
 @media only screen and (min-width: 320px) and (max-width: 480px){}
@@ -23,39 +35,161 @@ body {
       "c c c c c c c c c c c c" 1fr / 400px 1fr 1fr 1fr;
   }
 
-  header {
-    grid-area: h;
-    background-color: $dark-black;
-    color: $light-text;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 2rem;
-
-    nav {
-      height: 100%;
-
-      ul {
-        list-style: none;
-        display: flex;
-        align-items: center;
-        margin: 0;
-        height: 100%;
-        padding: 0;
-
-        li {
-          display: inline;
-          padding-right: 2rem;
-        }
-      }
-    }
-
-    .logout {
-      font-weight: bold;
-    }
-  }
-
   .content {
     grid-area: c;
   }
+}
+
+
+/* GENERIC STYLES */
+h1 {
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+h2 {
+  font-size: 2.2rem;
+  margin: 0;
+}
+
+h3 {
+  font-size: 1.95rem;
+  margin: 0;
+}
+
+h4 {
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+h5 {
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+h6 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+p {
+  margin-bottom: .25rem;
+}
+
+button {
+  height: 34px;
+  padding: 4px;
+  min-width: 4rem;
+  border-radius: 0;
+  border: 1px solid black;
+}
+
+input {
+  height: 34px;
+  display: inline-block;
+  min-width: 5rem;
+  padding: 4px;
+  margin-bottom: .5rem;
+}
+
+label {
+  margin-bottom: .25rem;
+}
+
+a {
+  text-decoration: none;
+  color: $dark-black;
+}
+
+a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+/* UTILITY CLASSES */
+/* display */
+.d-block {
+  display: block;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.flex-center {
+  justify-content: center;
+}
+
+.flex-around {
+  justify-content: space-around;
+}
+
+.flex-align-center {
+  align-items: center;
+}
+
+.flex-direction-col {
+  flex-direction: column;
+}
+
+.float-right {
+  float: right;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+.w-30 {
+  width: 30%;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+/* margin and padding */
+.p-1 {
+  padding: .5rem;
+}
+
+.p-2 {
+  padding: 1rem;
+}
+
+.p-3 {
+  padding: 2rem;
+}
+
+.m-1 {
+  margin: .5rem;
+}
+
+.m-2 {
+  margin: 1rem;
+}
+
+.m-3 {
+  margin: 2rem;
+}
+
+/* buttons */
+.btn-primary {
+  background-color: $medium-purple;
+  border: 1px solid $dark-black;
+  color: $light-text;
+}
+
+.btn-primary:hover {
+  background-color: $dark-purple;
+  border: 1px solid $dark-purple;
+}
+
+/* components */
+.card {
+  border: 1px solid $bg-medium;
+  border-radius: 9px;
+  padding: 1rem;
+  background: $bg-lighter;
 }

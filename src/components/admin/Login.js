@@ -66,15 +66,15 @@ class Login extends React.Component {
 
     render() {        
         return (
-            <div>
-                <form onSubmit={ this.handleSubmit }>
-                    <label>Username</label>
-                    <input type="text" name="username" value={ this.state.user.username } onChange={ this.handleUsernameChange } />
+            <div className="d-flex flex-center p-2">
+                <form className="w-30" onSubmit={ this.handleSubmit }>
+                    <label className="d-block w-100">Username</label>
+                    <input className="d-block w-100" type="text" name="username" value={ this.state.user.username } onChange={ this.handleUsernameChange } />
 
-                    <label>Password</label>
-                    <input type="password" name="password" value={ this.state.user.password } onChange={ this.handlePasswordChange } />
+                    <label className="d-block w-100">Password</label>
+                    <input className="d-block w-100" type="password" name="password" value={ this.state.user.password } onChange={ this.handlePasswordChange } />
 
-                    <button type="submit">Login</button>
+                    <button className="float-right btn-primary" type="submit">Login</button>
                 </form>
             </div>
         )
