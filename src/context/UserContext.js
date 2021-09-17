@@ -7,7 +7,9 @@ class UserProvider extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: localStorage.getItem('username'),
+            username: '',
+            email: '',
+            fullName: '',
             token: localStorage.getItem('userToken'),
             isLoggedIn: false
         }
@@ -18,38 +20,29 @@ class UserProvider extends React.Component {
     }
 
     setToken(token) {
-        console.log(`setting token to: ${token}`);
-        let newState = { ...this.state, 'token': token };
-        console.log(`newState is: `);
-        console.log(newState);
         this.setState({ ...this.state, 'token': token });
         localStorage.setItem('userToken', token);
-        console.log(this.state);
+        console.log(`(UserContext) token set to: ${token}`);
     }
 
     setUsername(username) {
-        console.log(`setting username to: ${username}`);
         this.setState({ ...this.state, 'username': username });
-        localStorage.setItem('username', username);
-        console.log(this.state);
+        console.log(`(UserContext) username set to: ${username}`);
     }
 
     setIsLoggedIn(isLoggedIn) {
         this.setState({ ...this.state, 'isLoggedIn': isLoggedIn });
+        console.log(`(UserContext) isLoggedIn set to: ${isLoggedIn}`);
     }
 
     clearAllData() {
-        console.log('Clearing all user data from storage...');
         this.setState({ username: '', token: '', isLoggedIn: false });
-        console.log('UserContext state is:');
-        console.log(this.state);
         localStorage.setItem('userToken', '');
-        localStorage.setItem('username', '');
+        console.log(`(UserContext) cleared all data.`);
     }
 
     componentDidMount() {
-        console.log('getting the user data?');
-        console.log(this.state);
+        console.log(`(UserContext) did mount.`)
         fetch('http://127.0.0.1:8000/users/me', {
             method: 'GET',
             headers: {
@@ -59,7 +52,6 @@ class UserProvider extends React.Component {
         }).then(response => {
             console.log(response);
                 if (response.ok) {
-                    console.log('response is ok...');
                     return response.json();
                 }
 
@@ -67,17 +59,12 @@ class UserProvider extends React.Component {
             }   
         )
         .then(d => {
-            if(d.response === 200) {
-                console.log(`access token: ${d.access_token}`);
-                localStorage.setItem('userToken', d.access_token);
-                this.setToken(d.access_token);
-            } else {
-                console.log("It's not OK...");
-                this.clearAllData();
-            }
+            console.log(`(UserContext) successfully retrieved user data:`);
+            console.log(d);
+            this.setState({ ...this.state, username: d.username, email: d.email, fullName: d.full_name, isLoggedIn: true });
         })
         .catch(e => {
-            console.log('an error occurred.');
+            console.log('(UserContext) an error occurred in fetch.');
             this.clearAllData();
             //this.setToken(null);
         })

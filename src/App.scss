@@ -1,11 +1,12 @@
-$dark-black: #212529;
-$medium: #6c757d;
-$light-text: #f8f9fa;
-$dark-purple: #240046;
-$medium-purple: #3c096c;
-$light-purple: #c77dff;
-$bg-lighter: #f8f9fa;
-$bg-light: #e9ecef;
+$text-dark: #212529;
+$text-medium: #6c757d;
+$text-light: #f8f9fa;
+$accent-dark: #240046;
+$accent-medium: #3c096c;
+$accent-light: #c77dff;
+$accent-gold: #f5cb5c;
+$bg-lighter: #fff;
+$bg-light: #f8f9fa;
 $bg-medium: #adb5bd;
 $bg-dark: #343a40;
 $bg-darker: #212529;
@@ -19,7 +20,12 @@ $bg-darker: #212529;
 
 body {
   background: $bg-light;
-  color: $dark-black;
+  color: $text-dark;
+  font-family: 'Poppins', sans-serif;
+}
+
+.content {
+  padding-top: 2rem;
 }
 
 @media only screen and (min-width: 320px) and (max-width: 480px){}
@@ -77,11 +83,11 @@ p {
 }
 
 button {
-  height: 34px;
-  padding: 4px;
+  height: 40px;
+  padding: 0 10px;
   min-width: 4rem;
   border-radius: 0;
-  border: 1px solid black;
+  border: 1px solid $bg-dark;
 }
 
 input {
@@ -98,7 +104,7 @@ label {
 
 a {
   text-decoration: none;
-  color: $dark-black;
+  color: $text-dark;
 }
 
 a:visited {
@@ -175,21 +181,48 @@ a:visited {
 }
 
 /* buttons */
+.btn {
+  height: 40px;
+  padding: 0 10px;
+  min-width: 4rem;
+  border-radius: 0;
+  border: 1px solid $bg-dark;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-gold {
+  background-color: $accent-gold;
+  color: $text-dark;
+  transition: background-color 150ms;
+}
+
+.btn-gold:hover {
+  background-color: #e6ad0f;
+}
+
 .btn-primary {
-  background-color: $medium-purple;
-  border: 1px solid $dark-black;
-  color: $light-text;
+  background-color: $accent-medium;
+  border: 1px solid $bg-dark;
+  color: $text-light;
+  transition: background-color 150ms;
 }
 
 .btn-primary:hover {
-  background-color: $dark-purple;
-  border: 1px solid $dark-purple;
+  background-color: $accent-dark;
 }
 
 /* components */
 .card {
   border: 1px solid $bg-medium;
-  border-radius: 9px;
   padding: 1rem;
   background: $bg-lighter;
+  box-shadow: 0 3px 15px 0 rgba(0,0,0,.25);
+  transition: transform 150ms, box-shadow 150ms;
+}
+
+.card:hover {
+  transform: scale(1.025);
+  box-shadow: 0 8px 20px 0 rgba(0,0,0,.25);
 }

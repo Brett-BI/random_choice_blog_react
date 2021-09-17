@@ -2,7 +2,7 @@ import React from "react";
 
 import { getArticles } from '../../utils/Requests'
 
-import './Article.scss';
+import './Articles.scss';
 
 class Articles extends React.Component {
   constructor(props) {
@@ -29,16 +29,13 @@ class Articles extends React.Component {
     let articles = this.state.articles.map((a) => {
     let adminURL = this.props.match && this.props.match.path.includes('/admin') ? true : false;
     return (
-      <a className="card w-50 d-block m-2" href={ adminURL ? `/admin/article/${a.id}` : `/article/${a.id}` } key={ a.id }>
+      <a className="card w-100 d-block m-2" href={ adminURL ? `/admin/article/${a.id}` : `/article/${a.id}` } key={ a.id }>
         <div>
-          <h1 className="article-title">{a.title}</h1>
-          <p>{a.subtitle}</p>
-          <p>{a.markup_content}</p>
-          <p>{a.posted_date}</p>
-          <p>{a.author}</p>
-          <p>
-            <a href={ adminURL ? `/admin/article/${a.id}` : `/article/${a.id}` }>Go to Article</a>
-          </p>
+          <h1 className="article-preview-title">{a.title}</h1>
+          <p className="article-preview-subtitle">{a.subtitle}</p>
+          <p className="article-preview-summary">{a.markup_content}</p>
+          <p className="article-preview-date">{a.posted_date}</p>
+          <p className="article-preview-author">{a.author}</p>
         </div>
       </a>
     )

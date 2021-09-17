@@ -15,7 +15,8 @@ class Header extends React.Component {
     }
 
     render() {
-        const { token, username, isLoggedIn } = this.context;
+        const { isLoggedIn } = this.context;
+        console.log(`is admin? ${window.location.pathname.includes('/admin')}`);
         return (
             <header>                
                 <nav>
@@ -24,7 +25,7 @@ class Header extends React.Component {
                             <Link to="/">Home</Link>
                         </li>
                         <li>
-                            <Link to="/admin">Admin</Link>
+                            <Link className={ window.location.pathname.includes('/admin') ? "active" : null } to="/admin">Admin</Link>
                         </li>                        
                     </ul>
                 </nav>

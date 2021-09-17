@@ -19,12 +19,7 @@ class App extends React.Component {
   static contextType = UserContext;
   constructor(props) {
     super(props);
-    this.state = {
-      user: {
-        name: 'Brian', 
-        loggedIn: true
-      }
-    }
+    this.state = {};
   }
   render() {
     return (
@@ -40,7 +35,9 @@ class App extends React.Component {
               <Route exact path="/login" component={ Login }></Route>
               <Route exact path="/logout" component={ Logout }></Route>
               <Route exact path="/">
-                <Articles />
+                <div className="w-100 d-flex flex-center">
+                  <Articles />
+                </div>
               </Route>
             </Switch>
           </div>
