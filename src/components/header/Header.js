@@ -1,13 +1,11 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 
-import UserContext from '../../context/UserContext';
-
 import './Header.scss';
 
 
 class Header extends React.Component {
-    static contextType = UserContext;
+    //static contextType = UserContext;
 
     constructor(props) {
         super(props);
@@ -15,7 +13,11 @@ class Header extends React.Component {
     }
 
     render() {
-        const { isLoggedIn } = this.context;
+        //const { isLoggedIn } = this.context;
+        let isLoggedIn = false;
+        if(this.props.user) {
+            isLoggedIn = this.props.user.isLoggedIn;
+        }
         console.log(`is admin? ${window.location.pathname.includes('/admin')}`);
         return (
             <header>                

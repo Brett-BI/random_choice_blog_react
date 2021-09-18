@@ -7,8 +7,8 @@ async function getArticle(article_id) {
 async function getArticles(count) {
     return fetch(`http://127.0.0.1:8000/article/latest?count=${count}`, {
         method: 'GET'
-    });
-    //.then(res => res.json());
+    })
+    .then(res => res.json());
 }
 
 async function patchArticle(article) {
@@ -33,7 +33,8 @@ async function postArticle(article) {
 }
 
 async function getToken(user) {
-    return fetch(`http://127.0.0.1:8000/token/`, {
+    console.log('Getting a token...');
+    return fetch(`http://127.0.0.1:8000/token`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'

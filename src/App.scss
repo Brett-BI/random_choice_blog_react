@@ -218,11 +218,11 @@ a:visited {
   border: 1px solid $bg-medium;
   padding: 1rem;
   background: $bg-lighter;
-  box-shadow: 0 3px 15px 0 rgba(0,0,0,.25);
+  box-shadow: 0 2px 10px 0 rgba(0,0,0,.25);
   transition: transform 150ms, box-shadow 150ms;
 }
 
 .card:hover {
   transform: scale(1.025);
-  box-shadow: 0 8px 20px 0 rgba(0,0,0,.25);
+  box-shadow: 0 6px 25px 0 rgba(0,0,0,.25);
 }

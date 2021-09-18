@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 
 import { getToken } from '../../utils/Requests';
+import { getUserData, setToken } from '../../utils/User';
 import UserContext from '../../context/UserContext';
 
 class Login extends React.Component {
@@ -12,8 +13,7 @@ class Login extends React.Component {
         this.state = {
             user: {
                 username: '',
-                password: '',
-                loggedIn: false
+                password: ''
             }
         };
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,7 +28,13 @@ class Login extends React.Component {
         // this.setState({ user: { username: user.name, loggedIn: user.loggedIn }});
         // console.log('now state is: ');
         // console.log(this.state);
-        
+        console.log(this.props);
+        console.log(`(Login) did mount. isLoggedIn? ${this.props.user.isLoggedIn}`);
+        if(this.props.user.isLoggedIn) {
+            console.log('(Login) user already logged in.');
+            //return ( <Redirect user={ this.props.user } to="/admin" /> );
+            this.props.history.push('/admin');
+        }
     }
 
     // request a token
@@ -37,20 +43,43 @@ class Login extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        const { token, setToken, setIsLoggedIn } = this.context;
-        console.log(`token right now is: ${token}`);
+        //const { token, setToken, setIsLoggedIn } = this.context;
+        //console.log(`token right now is: ${token}`);
 
-        let _token = getToken(this.state.user);
-        _token.then(data => data.json())
-        .then(d => {
-            //UserContext.setToken(d.access_token);
-            console.log('setting the token from Login');
-            setToken(d.access_token);
-            console.log('setting isLoggedIn from Login');
-            setIsLoggedIn(true);
-            console.log('going to admin panel...');
+        // let _token = getToken(this.state.user);
+        // _token.then(data => data.json())
+        // .then(d => {
+        //     //UserContext.setToken(d.access_token);
+        //     console.log('setting the token from Login');
+        //     setToken(d.access_token);
+        //     console.log('setting isLoggedIn from Login');
+        //     //setIsLoggedIn(true);
+        //     console.log('going to admin panel...');
+        //     this.props.history.push('/admin');
+        // })
+
+        let _loginUser = getToken(this.state.user);
+        _loginUser.then((res) => {
+            if(res.ok) {
+                return res.json();
+            } else {
+                return Promise.reject(res);
+            }
+        })
+        .then((_data) => {
+            console.log('Setting token from login...');
+            setToken(_data.access_token);
+            let _userData = getUserData();
+            _userData.then(data => {
+                console.log('(User) setting the user data...');
+                this.props.setUser(data);
+            });
             this.props.history.push('/admin');
         })
+        .catch((err) => {
+            console.log('Error occured logging user in.');
+            console.log(err);
+        });
     }
 
     handleUsernameChange(e) {
@@ -64,7 +93,7 @@ class Login extends React.Component {
     }
 
     render() {
-        const { isLoggedIn } = this.context;
+        const { isLoggedIn } = this.props.user;
         if(isLoggedIn) {
             return (
                 <Redirect to="/admin" />

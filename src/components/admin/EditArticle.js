@@ -3,6 +3,7 @@ import React from 'react';
 import { getArticle, patchArticle } from '../../utils/Requests';
 
 class EditArticle extends React.Component {
+    //static contextType = UserContext;
     constructor(props) {
         super(props);
         this.state = {
@@ -21,13 +22,13 @@ class EditArticle extends React.Component {
         this.handleContentChange = this.handleTitleChange.bind(this);
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         console.log(`article id is: ${this.props.match.params.article_id}`);
         console.log(this.props);
         this.getArticleData(this.props.match.params.article_id);
     }
 
-    async getArticleData(article_id) {
+    getArticleData(article_id) {
         let article = getArticle(article_id);
         article.then(data => data.json())
         .then(d => {
@@ -75,12 +76,6 @@ class EditArticle extends React.Component {
 
     render() {
         let a = this.state.article;
-        let { path, url } = this.props.match;
-        console.log(this.props.match);
-        console.log(`path is: ${path}`);
-        console.log(`url is: ${url}`);
-        console.log(`building: ${url}/article/:article_id OR ${url}`);
-        console.log(`also building: admin/article/:article_id OR admin/`);
         return (
             <div>
                 <form onSubmit={this.onSubmitHandler}>
