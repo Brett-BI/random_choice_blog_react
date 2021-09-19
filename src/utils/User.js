@@ -21,15 +21,6 @@ async function getUserData() {
             }   
         )
         .then(d => {
-            console.log(`(User) successfully retrieved user data:`);
-            console.log(d);
-            let _user = {
-                'username': d.username,
-                'email': d.email,
-                'full_name': d.full_name,
-                'isLoggedIn': true
-            }
-            //this.setState({ ...this.state, username: d.username, email: d.email, fullName: d.full_name, isLoggedIn: true });
             return { ...d, isLoggedIn: true };
         })
         .catch(e => {

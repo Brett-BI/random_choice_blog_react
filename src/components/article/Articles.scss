@@ -15,3 +15,27 @@ $bg-darker: #212529;
     width: 50%;
 }
 
+.title-container {
+    .subtitle {
+        margin-bottom: .75rem;
+    }
+}
+
+.summary {
+    margin-bottom: .75rem;
+}
+
+.meta-container {
+    display: flex;
+    justify-content: space-between;
+
+    .date {
+        font-family: 'Space Mono', monospace;
+        margin-bottom: 0;
+    }
+
+    .author {
+        font-family: 'Space Mono', monospace;
+        margin-bottom: 0;
+    }
+}
