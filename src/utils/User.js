@@ -30,7 +30,7 @@ async function getUserData() {
                 'isLoggedIn': true
             }
             //this.setState({ ...this.state, username: d.username, email: d.email, fullName: d.full_name, isLoggedIn: true });
-            return _user;
+            return { ...d, isLoggedIn: true };
         })
         .catch(e => {
             console.log('(User) an error occurred in fetch.');
