@@ -62,7 +62,7 @@ class Articles extends React.Component {
                 <h1 className="title">{ a.title }</h1>
                 <p className="subtitle">{ a.subtitle }</p>
               </div>              
-              <p className="summary">{ a.markup_content }</p>
+              <p className="summary">{ a.summary }</p>
               <div className="meta-container">
                 <p className="author mb-0">{ a.author.full_name }</p>
                 <p className="date mb-0">{ formatDate(a.posted_date) }</p>                
