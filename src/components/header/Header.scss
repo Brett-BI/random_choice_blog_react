@@ -10,37 +10,47 @@ $bg-light: #f8f9fa;
 $bg-medium: #adb5bd;
 $bg-dark: #343a40;
 $bg-darker: #212529;
+$shadow-default: 0 2px 10px 0 rgba(0,0,0,.1), 2px 4px 15px 0 rgba(0,0,0,.1), 8px 14px 30px 0 (rgba(0,0,0,.15));
+$shadow-hover: 0 6px 25px 0 rgba(0,0,0,.1), 4px 8px 34px 0 rgba(0,0,0,.1), 12px 18px 44px 0 (rgba(0,0,0,.15));
+
+/* NAV specific */
+$headerMinimalSize: 60px;
+$navItemMinimalSize: 40px;
 
 
 @media only screen and (min-width: 1201px){
     
-    header {
+    header.full {
         grid-area: h;
         background-color: $bg-darker;
         color: $text-light;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0 2rem;
         font-family: 'Space Mono', monospace;
+        box-shadow: $shadow-default;
 
         nav {
             height: 100%;
-
-        ul {
-            list-style: none;
             display: flex;
-            align-items: center;
-            margin: 0;
-            height: 100%;
-            padding: 0;
+            justify-content: space-between;
 
-            li {
-                display: inline;
-                margin-right: 2rem;
-                padding: 0 .5rem;
-                height: 100%;
-                transition: background-color 150ms;
+            .brand {
+                padding: 0 1rem;
+                display: flex;
+                align-items: center;
+            }
+
+            .brand:hover {
+                background-color: $bg-darker;
+            }
+
+            .nav-item {
+                padding: 0 1rem;
+                display: flex;
+                align-items: center;
+                border-bottom: 3px solid transparent;
+                transition: border-bottom 150ms;
 
                 a {
                     height: 100%;
@@ -48,18 +58,22 @@ $bg-darker: #212529;
                     align-items: center;
                 }
             }
-
-            li:hover {
-                background-color: $bg-dark;
+            
+            .nav-item:hover {
+                border-bottom: 3px solid $accent-gold;
             }
+            /*.nav-item:not(.brand):hover {
+                background-color: $bg-medium;
+            }*/
         }
-    }
 
         .logout {
            font-weight: bold;
            height: 100%;
-           padding: 0 .5rem;           
-           transition: background-color 150ms;
+           padding: 0 .5rem;
+           margin-right: .5rem;
+           border-bottom: 3px solid transparent;   
+           transition: border-bottom 150ms;
 
            a {
                height: 100%;
@@ -74,7 +88,158 @@ $bg-darker: #212529;
         }
 
         .logout:hover {
-            background-color: $bg-dark;
+            border-bottom: 3px solid $accent-gold;
+        }
+    }
+
+    header.minimal {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background-color: transparent;
+        display: flex;
+        justify-content: space-around;
+
+        .brand {            
+            background-color: $accent-gold;
+            color: $text-dark;
+            font-weight: bold;
+            height: $headerMinimalSize;
+            width: $headerMinimalSize;
+            margin-right: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: $shadow-default;
+            animation: brandOnUse .5s;            
+            cursor: pointer;
+            transition: transform 150ms;
+
+            a {
+                width: $headerMinimalSize - 8px;
+                height: $headerMinimalSize - 20px;                
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: auto;
+                transition: border-right 50ms;
+                animation: brandLinkOnUse .75s;
+                border-right: 3px solid $bg-dark;
+            }
+        }
+
+        .brand:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes brandOnUse {
+            0% {
+                transform: scale(.4);
+                box-shadow: $shadow-default;
+            }
+            50% {
+                transform: scale(1.1);
+                box-shadow: $shadow-hover;
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: $shadow-default;
+            }
+        }
+
+        @keyframes brandLinkOnUse {
+            0% {
+                border-right: none;
+            }
+
+            64% {
+                border-right: none;
+            }
+
+            65% {
+                border-right: 1px solid $bg-dark;
+            }
+
+            100% {
+                border-right: 3px solid $bg-dark;
+            }
+        }
+
+        nav {
+            /*background-color: $bg-darker;*/
+            background-color: transparent;
+            color: $text-light;
+            display: none;
+            flex-direction: column;
+            box-sizing: content-box;
+
+            .nav-item {
+                display: flex;
+                align-items: center;
+                height: 40px;
+                background-color: $accent-gold;
+                color: $text-dark;
+                padding: 6px 4px;
+                margin-bottom: .5rem;
+                transition: box-shadow 250ms, transform 250ms;
+                box-shadow: $shadow-default;
+                animation: navItemShow .5s;
+                transform-origin: 0 1rem;
+
+                a {
+                    display: flex;
+                    align-items: center;
+                    height: 100%;
+                    border-left: 3px solid transparent;
+                    padding-left: 6px;
+                }
+            }
+
+            .nav-item:hover {
+                /*border-right: 3px solid $accent-gold;*/
+                box-shadow: $shadow-hover;
+                transform: scale(1.05);
+
+                a {
+                    border-left: 3px solid $bg-dark;
+                }
+            }
+
+            @keyframes navItemShow {
+                0% {
+                    transform: scale(.4);
+                    box-shadow: $shadow-default
+                }
+                50% {
+                    transform: scale(1.1);
+                    box-shadow: $shadow-hover;
+                }
+                100% {
+                    transform: scale(1);
+                    box-shadow: $shadow-default
+                }
+            }
+        }
+
+        nav.hide {
+            display: none;
+        }
+
+        nav.show {
+            display: flex;
+            transform-origin: 0 0;
+            animation: navShow .25s;
+        }
+
+        @keyframes navShow {
+            0% {
+                transform: scale(.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
     }
 }

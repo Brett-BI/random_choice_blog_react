@@ -25,7 +25,7 @@ class Articles extends React.Component {
    
     if(!this.state.articles.length) {      
       this.setState({ ...this.state, loading: true });      
-      let articles = await getArticles(3);
+      let articles = await getArticles(5);
 
       if(this._isMounted) {
         console.log(articles);

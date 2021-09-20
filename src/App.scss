@@ -10,6 +10,8 @@ $bg-light: #f8f9fa;
 $bg-medium: #adb5bd;
 $bg-dark: #343a40;
 $bg-darker: #212529;
+$shadow-default: 0 2px 10px 0 rgba(0,0,0,.1), 2px 4px 15px 0 rgba(0,0,0,.1), 8px 14px 30px 0 (rgba(0,0,0,.15));
+$shadow-hover: 0 6px 25px 0 rgba(0,0,0,.1), 4px 8px 34px 0 rgba(0,0,0,.1), 12px 18px 44px 0 (rgba(0,0,0,.15));
 
 * {
   font-size: 16px;
@@ -104,7 +106,7 @@ label {
 
 a {
   text-decoration: none;
-  color: $text-dark;
+  color: inherit;
 }
 
 a:visited {
@@ -115,6 +117,10 @@ a:visited {
 
 /* UTILITY CLASSES */
 /* display */
+.hidden {
+  display: none;
+}
+
 .d-block {
   display: block;
 }
@@ -218,11 +224,12 @@ a:visited {
   border: 1px solid $bg-medium;
   padding: 1rem;
   background: $bg-lighter;
-  box-shadow: 0 2px 10px 0 rgba(0,0,0,.25);
+  box-shadow: $shadow-default;
   transition: transform 150ms, box-shadow 150ms;
 }
 
 .card:hover {
-  transform: scale(1.025);
-  box-shadow: 0 6px 25px 0 rgba(0,0,0,.25);
+  transform: scale(1.02);
+  /*box-shadow: 0 6px 25px 0 rgba(0,0,0,.25);*/
+  box-shadow: $shadow-hover;
 }
