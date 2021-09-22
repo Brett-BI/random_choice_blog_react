@@ -45,7 +45,7 @@ class Article extends React.Component {
     render () {
         if(Object.keys(this.state.article).length) {
             return (
-                <div className="d-flex flex-center m-2">
+                <div className="d-flex flex-center">
                     <div className="card-no-hover w-75 p-3">
                         <h1 className="article_title">{this.state.article.title}</h1>
                         <p className="article_subtitle">{this.state.article.subtitle}</p>

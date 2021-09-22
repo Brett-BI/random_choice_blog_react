@@ -56,7 +56,7 @@ class Articles extends React.Component {
       console.log('(Articles) not loading render...');
       let articles = this.state.articles.map((a) => {
         return (
-          <Link className="card card-flush w-100 d-block m-2" to={ this.props.admin ? `/admin/article/${a.id}` : `/article/${a.id}` } key={ a.id }>
+          <Link className="card card-flush w-100 d-block" to={ this.props.admin ? `/admin/article/${a.id}` : `/article/${a.id}` } key={ a.id }>
             <div className="article-preview">
               <div className="title-container">
                 <h1 className="title">{ a.title }</h1>

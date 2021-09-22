@@ -32,9 +32,6 @@ class Admin extends React.Component {
                 <Route exact path={`/admin/article/new`} component={ CreateArticle } />
                 <Route path={`/admin/article/:article_id`} component={ EditArticle } />  
                 <Route exact path={`/admin`}>
-                    <div className="new-article-button w-50">
-                        <Link className="btn btn-gold float-right" to="/admin/article/new">+ NEW ARTICLE</Link>
-                    </div>
                     <Articles admin={ true } />
                 </Route>                                                                                                           
             </Switch>

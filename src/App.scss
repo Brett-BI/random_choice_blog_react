@@ -38,13 +38,16 @@ body {
 @media only screen and (min-width: 1201px){
   #root {
     display: grid;
-    grid-template: 
-      'h h h h h h h h h h h h' 60px
-      "c c c c c c c c c c c c" 1fr / 400px 1fr 1fr 1fr;
+    // grid-template: 
+    //   'h h h h h h h h h h h h' 60px
+    //   "c c c c c c c c c c c c" 1fr / 400px 1fr 1fr 1fr;
+    grid-template:
+      "c c c c c c c c c c c c" 1fr;
   }
 
   .content {
     grid-area: c;
+    padding-top: 1rem;
   }
 }
 
